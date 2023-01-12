@@ -47,9 +47,28 @@ class MyAppState extends ChangeNotifier {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  var selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    Widget page;
+    switch (selectedIndex) {
+      case 0:
+        page = GeneratorPage();
+        break; 
+      case 1:
+        page = FavoritesPage();
+        break;
+      default:
+        throw UnimplementedError('ERROR')
+    }
+
     return Scaffold(
       body: Row(children: [
         SafeArea(
@@ -120,6 +139,13 @@ class GeneratorPage extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Text('Blank Page'));
   }
 }
 
